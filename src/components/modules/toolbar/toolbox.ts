@@ -254,18 +254,18 @@ export default class Toolbox extends Module<ToolboxNodes> {
     /**
      * Add listeners to show/hide toolbox tooltip
      */
-    const tooltipContent = this.drawTooltip(tool);
+    // const tooltipContent = this.drawTooltip(tool);
 
-    this.tooltip.onHover(button, tooltipContent, {
-      placement: "bottom",
-      hidingDelay: 200,
-    });
+    // this.tooltip.onHover(button, tooltipContent, {
+    //   placement: "bottom",
+    //   hidingDelay: 200,
+    // });
 
-    const shortcut = tool.shortcut;
+    // const shortcut = tool.shortcut;
 
-    if (shortcut) {
-      this.enableShortcut(tool.name, shortcut);
-    }
+    // if (shortcut) {
+    //   this.enableShortcut(tool.name, shortcut);
+    // }
 
     /** Increment Tools count */
     this.displayedToolsCount++;
