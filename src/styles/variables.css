@@ -21,12 +21,12 @@
   /**
    * Gray icons hover
    */
-  --color-dark: #1D202B;
+  --color-dark: #1d202b;
 
   /**
    * Blue icons
    */
-  --color-active-icon: #388AE5;
+  --color-active-icon: #388ae5;
 
   /**
    * Gray border, loaders
@@ -57,18 +57,19 @@
   /**
    * Confirm deletion bg
    */
-  --color-confirm: #E24A4A;
+  --color-confirm: #e24a4a;
 
   --overlay-pane: {
     position: absolute;
-    background-color: #FFFFFF;
-    border: 1px solid #EAEAEA;
-    box-shadow: 0 3px 15px -3px rgba(13,20,33,0.13);
+    background-color: #ffffff;
+    border: 1px solid #eaeaea;
+    box-shadow: 0 3px 15px -3px rgba(13, 20, 33, 0.13);
     border-radius: 4px;
     z-index: 2;
 
-    @media (--mobile){
-      box-shadow: 0 13px 7px -5px rgba(26, 38, 49, 0.09),6px 15px 34px -6px rgba(33, 48, 73, 0.29);
+    @media (--mobile) {
+      box-shadow: 0 13px 7px -5px rgba(26, 38, 49, 0.09),
+        6px 15px 34px -6px rgba(33, 48, 73, 0.29);
       border-bottom-color: #d5d7db;
     }
 
@@ -86,7 +87,7 @@
         margin-left: 0;
       }
     }
-  };
+  }
 
   /**
    * Styles for Toolbox Buttons and Plus Button
@@ -100,17 +101,14 @@
     justify-content: center;
     align-items: center;
 
-    &:hover,
     &--active {
-      color: var(--color-active-icon);
+      button {
+        color: var(--color-active-icon);
+        animation: bounceIn 0.75s 1;
+        animation-fill-mode: forwards;
+      }
     }
-
-    &--active{
-      animation: bounceIn 0.75s 1;
-      animation-fill-mode: forwards;
-    }
-
-  };
+  }
 
   /**
    * Styles for Settings Button in Toolbar
@@ -144,5 +142,5 @@
         animation-duration: 250ms;
       }
     }
-  };
+  }
 }
