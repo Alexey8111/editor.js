@@ -227,6 +227,7 @@ export default class Toolbox extends Module<ToolboxNodes> {
 
     button.dataset.tool = tool.name;
     button.innerHTML = toolToolboxSettings.icon;
+    button.innerHTML = toolToolboxSettings.title;
 
     $.append(this.nodes.toolbox, button);
 

@@ -21,6 +21,11 @@
   &__button {
     @apply --toolbox-button;
     flex-shrink: 0;
+    margin-right: 4px;
+  }
+
+  &__button:last-child {
+    margin-right: 0;
   }
 }
 

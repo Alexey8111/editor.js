@@ -24,8 +24,6 @@
   }
 
   &__content {
-    max-width: var(--content-width);
-    margin: 0 auto;
     position: relative;
 
     @media (--mobile) {
