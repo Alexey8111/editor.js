@@ -233,11 +233,11 @@ export default class Toolbox extends Module<ToolboxNodes> {
 
     buttonElement.appendChild(button);
 
-    buttonTitle.innerHTML = toolToolboxSettings.title
+    buttonTitle.innerHTML = toolToolboxSettings.title;
 
     button.dataset.tool = tool.name;
     button.innerHTML = toolToolboxSettings.icon;
-    button.appendChild(buttonTitle)
+    button.appendChild(buttonTitle);
 
     $.append(this.nodes.toolbox, buttonElement);
 
@@ -247,9 +247,13 @@ export default class Toolbox extends Module<ToolboxNodes> {
     /**
      * Add click listener
      */
-    this.listeners.on(button, "click", (event: KeyboardEvent | MouseEvent) => {
-      this.toolButtonActivate(event, tool.name);
-    });
+    this.listeners.on(
+      buttonElement,
+      "click",
+      (event: KeyboardEvent | MouseEvent) => {
+        this.toolButtonActivate(event, tool.name);
+      }
+    );
 
     /**
      * Add listeners to show/hide toolbox tooltip
