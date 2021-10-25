@@ -239,10 +239,10 @@ export default class Toolbox extends Module<ToolboxNodes> {
     button.innerHTML = toolToolboxSettings.icon;
     button.appendChild(buttonTitle)
 
-    $.append(this.nodes.toolbox, button);
+    $.append(this.nodes.toolbox, buttonElement);
 
-    this.nodes.toolbox.appendChild(button);
-    this.nodes.buttons.push(button);
+    this.nodes.toolbox.appendChild(buttonElement);
+    this.nodes.buttons.push(buttonElement);
 
     /**
      * Add click listener
