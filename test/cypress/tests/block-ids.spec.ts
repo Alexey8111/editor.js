@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import Header from '../../../example/tools/header';
-import { nanoid } from 'nanoid';
+import Header from "../../../example/tools/header";
+import { nanoid } from "nanoid";
 
-describe.only('Block ids', () => {
+describe.only("Block ids", () => {
   beforeEach(() => {
     if (this && this.editorInstance) {
       this.editorInstance.destroy();
@@ -11,121 +11,114 @@ describe.only('Block ids', () => {
         tools: {
           header: Header,
         },
-      }).as('editorInstance');
+      }).as("editorInstance");
     }
   });
 
-  it('Should generate unique block ids for new blocks', () => {
-    cy.get('[data-cy=editorjs]')
-      .get('div.ce-block')
+  it("Should generate unique block ids for new blocks", () => {
+    cy.get("[data-cy=editorjs]")
+      .get("div.ce-block")
       .click()
-      .type('First block ')
-      .type('{enter}')
-      .get('div.ce-block')
+      .type("First block ")
+      .type("{enter}")
+      .get("div.ce-block")
       .last()
-      .type('Second block ')
-      .type('{enter}');
+      .type("Second block ")
+      .type("{enter}");
 
-    cy.get('[data-cy=editorjs]')
-      .get('div.ce-toolbar__plus')
+    cy.get("[data-cy=editorjs]").get("div.ce-toolbar__plus").click();
+
+    cy.get("[data-cy=editorjs]")
+      .get("li.megasreda-editor-toolbox__button[data-tool=header]")
       .click();
 
-    cy.get('[data-cy=editorjs]')
-      .get('li.ce-toolbox__button[data-tool=header]')
-      .click();
-
-    cy.get('[data-cy=editorjs]')
-      .get('div.ce-block')
+    cy.get("[data-cy=editorjs]")
+      .get("div.ce-block")
       .last()
       .click()
-      .type('Header');
+      .type("Header");
 
-    cy.get('@editorInstance')
-      .then(async (editor: any) => {
-        const data = await editor.save();
+    cy.get("@editorInstance").then(async (editor: any) => {
+      const data = await editor.save();
 
-        data.blocks.forEach(block => {
-          expect(typeof block.id).to.eq('string');
-        });
+      data.blocks.forEach((block) => {
+        expect(typeof block.id).to.eq("string");
       });
+    });
   });
 
-  it('should preserve passed ids', () => {
+  it("should preserve passed ids", () => {
     const blocks = [
       {
         id: nanoid(),
-        type: 'paragraph',
+        type: "paragraph",
         data: {
-          text: 'First block',
+          text: "First block",
         },
       },
       {
         id: nanoid(),
-        type: 'paragraph',
+        type: "paragraph",
         data: {
-          text: 'Second block',
+          text: "Second block",
         },
       },
     ];
 
-    cy.get('@editorInstance')
-      .render({
-        blocks,
-      });
+    cy.get("@editorInstance").render({
+      blocks,
+    });
 
-    cy.get('[data-cy=editorjs]')
-      .get('div.ce-block')
+    cy.get("[data-cy=editorjs]")
+      .get("div.ce-block")
       .first()
       .click()
-      .type('{movetoend} Some more text');
+      .type("{movetoend} Some more text");
 
-    cy.get('@editorInstance')
-      .then(async (editor: any) => {
-        const data = await editor.save();
+    cy.get("@editorInstance").then(async (editor: any) => {
+      const data = await editor.save();
 
-        data.blocks.forEach((block, index) => {
-          expect(block.id).to.eq(blocks[index].id);
-        });
+      data.blocks.forEach((block, index) => {
+        expect(block.id).to.eq(blocks[index].id);
       });
+    });
   });
 
-  it('should preserve passed ids if blocks were added', () => {
+  it("should preserve passed ids if blocks were added", () => {
     const blocks = [
       {
         id: nanoid(),
-        type: 'paragraph',
+        type: "paragraph",
         data: {
-          text: 'First block',
+          text: "First block",
         },
       },
       {
         id: nanoid(),
-        type: 'paragraph',
+        type: "paragraph",
         data: {
-          text: 'Second block',
+          text: "Second block",
         },
       },
     ];
 
-    cy.get('@editorInstance')
-      .render({
-        blocks,
-      });
+    cy.get("@editorInstance").render({
+      blocks,
+    });
 
-    cy.get('[data-cy=editorjs]')
-      .get('div.ce-block')
+    cy.get("[data-cy=editorjs]")
+      .get("div.ce-block")
       .first()
       .click()
-      .type('{enter}')
+      .type("{enter}")
       .next()
-      .type('Middle block');
+      .type("Middle block");
 
-    cy.get('@editorInstance')
-      .then(async (editor: any) => {
-        const data = await editor.save();
+    cy.get("@editorInstance").then(async (editor: any) => {
+      const data = await editor.save();
 
-        expect(data.blocks[0].id).to.eq(blocks[0].id);
-        expect(data.blocks[2].id).to.eq(blocks[1].id);
-      });
+      expect(data.blocks[0].id).to.eq(blocks[0].id);
+      expect(data.blocks[2].id).to.eq(blocks[1].id);
+    });
   });
 });

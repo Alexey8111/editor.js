@@ -1,4 +1,4 @@
-.ce-toolbox {
+.megasreda-editor-toolbox {
   position: absolute;
   visibility: hidden;
   transition: opacity 100ms ease;
@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: row;
 
-  @media (--mobile){
+  @media (--mobile) {
     position: static;
     transform: none !important;
     align-items: center;
@@ -24,7 +24,7 @@
   }
 }
 
-.ce-toolbox-button-tooltip {
+.megasreda-editor-toolbox-button-tooltip {
   &__shortcut {
     opacity: 0.6;
     word-spacing: -3px;
@@ -35,7 +35,7 @@
 /**
  * Styles for Narrow mode
  */
-.codex-editor--narrow .ce-toolbox {
+.codex-editor--narrow .megasreda-editor-toolbox {
   @media (--not-mobile) {
     background: #fff;
     z-index: 2;
