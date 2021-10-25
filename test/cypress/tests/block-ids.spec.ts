@@ -26,7 +26,9 @@ describe.only("Block ids", () => {
       .type("Second block ")
       .type("{enter}");
 
-    cy.get("[data-cy=editorjs]").get("div.ce-toolbar__plus").click();
+    cy.get("[data-cy=editorjs]")
+      .get("div.megasreda-editor-toolbar__plus")
+      .click();
 
     cy.get("[data-cy=editorjs]")
       .get("li.megasreda-editor-toolbox__button[data-tool=header]")

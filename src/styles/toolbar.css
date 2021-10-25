@@ -1,4 +1,4 @@
-.ce-toolbar {
+.megasreda-editor-toolbar {
   position: absolute;
   left: 0;
   right: 0;
@@ -118,7 +118,7 @@
 /**
  * Styles for Narrow mode
  */
-.codex-editor--narrow .ce-toolbar__plus {
+.megasreda-editor--narrow .megasreda-editor-toolbar__plus {
   @media (--not-mobile) {
     left: 5px;
   }

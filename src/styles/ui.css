@@ -1,7 +1,7 @@
 /**
 * Editor wrapper
 */
-.codex-editor {
+.megasreda-editor {
   position: relative;
   box-sizing: border-box;
   z-index: 1;
@@ -40,7 +40,7 @@
     }
   }
 
-  &--narrow .ce-toolbar__actions {
+  &--narrow .megasreda-editor-toolbar__actions {
     @media (--not-mobile) {
       right: -5px;
     }
@@ -51,7 +51,7 @@
     height: 30vh;
 
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       left: 50%;
       top: 50%;
@@ -93,10 +93,10 @@
     }
 
     &__rectangle {
-       position: absolute;
-       pointer-events: none;
-       background-color: rgba(46, 170, 220, 0.2);
-       border: 1px solid transparent;
+      position: absolute;
+      pointer-events: none;
+      background-color: rgba(46, 170, 220, 0.2);
+      border: 1px solid transparent;
     }
   }
 
@@ -110,11 +110,12 @@
 /**
  * Set color for native selection
  */
-::selection{
+::selection {
   background-color: var(--inlineSelectionColor);
 }
 
-.codex-editor--toolbox-opened [contentEditable=true][data-placeholder]:focus::before {
+.megasreda-editor--toolbox-opened
+  [contentEditable="true"][data-placeholder]:focus::before {
   opacity: 0 !important;
 }
 

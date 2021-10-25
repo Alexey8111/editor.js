@@ -1,8 +1,8 @@
 /**
  * TextRange interface for IE9-
  */
-import * as _ from './utils';
-import $ from './dom';
+import * as _ from "./utils";
+import $ from "./dom";
 
 interface TextRange {
   boundingTop: number;
@@ -59,8 +59,8 @@ export default class SelectionUtils {
   /**
    * Native Document's commands for fake background
    */
-  private readonly commandBackground: string = 'backColor';
-  private readonly commandRemoveFormat: string = 'removeFormat';
+  private readonly commandBackground: string = "backColor";
+  private readonly commandRemoveFormat: string = "removeFormat";
 
   /**
    * Editor styles
@@ -69,8 +69,8 @@ export default class SelectionUtils {
    */
   public static get CSS(): { editorWrapper: string; editorZone: string } {
     return {
-      editorWrapper: 'codex-editor',
-      editorZone: 'codex-editor__redactor',
+      editorWrapper: "megasreda-editor",
+      editorZone: "megasreda-editor__redactor",
     };
   }
 
@@ -156,7 +156,8 @@ export default class SelectionUtils {
     /**
      * Something selected on document
      */
-    let selectedNode = (selection.anchorNode || selection.focusNode) as HTMLElement;
+    let selectedNode = (selection.anchorNode ||
+      selection.focusNode) as HTMLElement;
 
     if (selectedNode && selectedNode.nodeType === Node.TEXT_NODE) {
       selectedNode = selectedNode.parentNode as HTMLElement;
@@ -236,7 +237,7 @@ export default class SelectionUtils {
    */
   public static get rect(): DOMRect | ClientRect {
     let sel: Selection | MSSelection = (document as Document).selection,
-        range: TextRange | Range;
+      range: TextRange | Range;
 
     let rect = {
       x: 0,
@@ -245,7 +246,7 @@ export default class SelectionUtils {
       height: 0,
     } as DOMRect;
 
-    if (sel && sel.type !== 'Control') {
+    if (sel && sel.type !== "Control") {
       sel = sel as MSSelection;
       range = sel.createRange() as TextRange;
       rect.x = range.boundingLeft;
@@ -257,7 +258,7 @@ export default class SelectionUtils {
     }
 
     if (!window.getSelection) {
-      _.log('Method window.getSelection is not supported', 'warn');
+      _.log("Method window.getSelection is not supported", "warn");
 
       return rect;
     }
@@ -265,7 +266,7 @@ export default class SelectionUtils {
     sel = window.getSelection();
 
     if (sel.rangeCount === null || isNaN(sel.rangeCount)) {
-      _.log('Method SelectionUtils.rangeCount is not supported', 'warn');
+      _.log("Method SelectionUtils.rangeCount is not supported", "warn");
 
       return rect;
     }
@@ -281,12 +282,12 @@ export default class SelectionUtils {
     }
     // Fall back to inserting a temporary element
     if (rect.x === 0 && rect.y === 0) {
-      const span = document.createElement('span');
+      const span = document.createElement("span");
 
       if (span.getBoundingClientRect) {
         // Ensure span has dimensions and position by
         // adding a zero-width space character
-        span.appendChild(document.createTextNode('\u200b'));
+        span.appendChild(document.createTextNode("\u200b"));
         range.insertNode(span);
         rect = span.getBoundingClientRect() as DOMRect;
 
@@ -308,7 +309,7 @@ export default class SelectionUtils {
    * @returns {string}
    */
   public static get text(): string {
-    return window.getSelection ? window.getSelection().toString() : '';
+    return window.getSelection ? window.getSelection().toString() : "";
   }
 
   /**
@@ -361,9 +362,9 @@ export default class SelectionUtils {
    */
   public static addFakeCursor(container?: HTMLElement): void {
     const range = SelectionUtils.range;
-    const fakeCursor = $.make('span', 'codex-editor__fake-cursor');
+    const fakeCursor = $.make("span", "megasreda-editor__fake-cursor");
 
-    fakeCursor.dataset.mutationFree = 'true';
+    fakeCursor.dataset.mutationFree = "true";
 
     if (!range || (container && !container.contains(range.startContainer))) {
       return;
@@ -379,7 +380,7 @@ export default class SelectionUtils {
    * @param container - container to look for
    */
   public static removeFakeCursor(container: HTMLElement = document.body): void {
-    const fakeCursor = $.find(container, `.codex-editor__fake-cursor`);
+    const fakeCursor = $.find(container, `.megasreda-editor__fake-cursor`);
 
     fakeCursor && fakeCursor.remove();
   }
@@ -400,7 +401,7 @@ export default class SelectionUtils {
    * Sets fake background
    */
   public setFakeBackground(): void {
-    document.execCommand(this.commandBackground, false, '#a8d6ff');
+    document.execCommand(this.commandBackground, false, "#a8d6ff");
 
     this.isFakeBackgroundEnabled = true;
   }
@@ -455,7 +456,11 @@ export default class SelectionUtils {
    *
    * @returns {HTMLElement|null}
    */
-  public findParentTag(tagName: string, className?: string, searchDepth = 10): HTMLElement | null {
+  public findParentTag(
+    tagName: string,
+    className?: string,
+    searchDepth = 10
+  ): HTMLElement | null {
     const selection = window.getSelection();
     let parentTag = null;
 
@@ -497,7 +502,11 @@ export default class SelectionUtils {
           /**
            * Optional additional check for class-name mismatching
            */
-          if (className && parent.classList && !parent.classList.contains(className)) {
+          if (
+            className &&
+            parent.classList &&
+            !parent.classList.contains(className)
+          ) {
             parentTag = null;
           }
 

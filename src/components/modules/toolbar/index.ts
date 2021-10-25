@@ -1,12 +1,12 @@
-import Module from '../../__module';
-import $ from '../../dom';
-import * as _ from '../../utils';
-import I18n from '../../i18n';
-import { I18nInternalNS } from '../../i18n/namespace-internal';
-import Tooltip from '../../utils/tooltip';
-import { ModuleConfig } from '../../../types-internal/module-config';
-import { EditorConfig } from '../../../../types';
-import SelectionUtils from '../../selection';
+import Module from "../../__module";
+import $ from "../../dom";
+import * as _ from "../../utils";
+import I18n from "../../i18n";
+import { I18nInternalNS } from "../../i18n/namespace-internal";
+import Tooltip from "../../utils/tooltip";
+import { ModuleConfig } from "../../../types-internal/module-config";
+import { EditorConfig } from "../../../../types";
+import SelectionUtils from "../../selection";
 
 /**
  * HTML Elements used for Toolbar UI
@@ -101,21 +101,21 @@ export default class Toolbar extends Module<ToolbarNodes> {
    */
   public get CSS(): { [name: string]: string } {
     return {
-      toolbar: 'ce-toolbar',
-      content: 'ce-toolbar__content',
-      actions: 'ce-toolbar__actions',
-      actionsOpened: 'ce-toolbar__actions--opened',
+      toolbar: "megasreda-editor-toolbar",
+      content: "megasreda-editor-toolbar__content",
+      actions: "megasreda-editor-toolbar__actions",
+      actionsOpened: "megasreda-editor-toolbar__actions--opened",
 
-      toolbarOpened: 'ce-toolbar--opened',
+      toolbarOpened: "megasreda-editor-toolbar--opened",
 
       // Content Zone
-      plusButton: 'ce-toolbar__plus',
-      plusButtonShortcut: 'ce-toolbar__plus-shortcut',
-      plusButtonHidden: 'ce-toolbar__plus--hidden',
+      plusButton: "megasreda-editor-toolbar__plus",
+      plusButtonShortcut: "megasreda-editor-toolbar__plus-shortcut",
+      plusButtonHidden: "megasreda-editor-toolbar__plus--hidden",
 
       // Actions Zone
-      blockActionsButtons: 'ce-toolbar__actions-buttons',
-      settingsToggler: 'ce-toolbar__settings-btn',
+      blockActionsButtons: "megasreda-editor-toolbar__actions-buttons",
+      settingsToggler: "megasreda-editor-toolbar__settings-btn",
     };
   }
 
@@ -135,7 +135,8 @@ export default class Toolbar extends Module<ToolbarNodes> {
    */
   public get plusButton(): { hide: () => void; show: () => void } {
     return {
-      hide: (): void => this.nodes.plusButton.classList.add(this.CSS.plusButtonHidden),
+      hide: (): void =>
+        this.nodes.plusButton.classList.add(this.CSS.plusButtonHidden),
       show: (): void => {
         if (this.Editor.Toolbox.isEmpty) {
           return;
@@ -219,7 +220,9 @@ export default class Toolbar extends Module<ToolbarNodes> {
     /**
      * Move Toolbar to the Top coordinate of Block
      */
-    this.nodes.wrapper.style.transform = `translate3D(0, ${Math.floor(toolbarY)}px, 0)`;
+    this.nodes.wrapper.style.transform = `translate3D(0, ${Math.floor(
+      toolbarY
+    )}px, 0)`;
   }
 
   /**
@@ -261,13 +264,13 @@ export default class Toolbar extends Module<ToolbarNodes> {
    * Draws Toolbar elements
    */
   private make(): void {
-    this.nodes.wrapper = $.make('div', this.CSS.toolbar);
+    this.nodes.wrapper = $.make("div", this.CSS.toolbar);
 
     /**
      * Make Content Zone and Actions Zone
      */
-    ['content', 'actions'].forEach((el) => {
-      this.nodes[el] = $.make('div', this.CSS[el]);
+    ["content", "actions"].forEach((el) => {
+      this.nodes[el] = $.make("div", this.CSS[el]);
     });
 
     /**
@@ -281,23 +284,32 @@ export default class Toolbar extends Module<ToolbarNodes> {
      *  - Plus Button
      *  - Toolbox
      */
-    this.nodes.plusButton = $.make('div', this.CSS.plusButton);
-    $.append(this.nodes.plusButton, $.svg('plus', 14, 14));
+    this.nodes.plusButton = $.make("div", this.CSS.plusButton);
+    $.append(this.nodes.plusButton, $.svg("plus", 14, 14));
     $.append(this.nodes.content, this.nodes.plusButton);
 
-    this.readOnlyMutableListeners.on(this.nodes.plusButton, 'click', () => {
-      this.plusButtonClicked();
-    }, false);
+    this.readOnlyMutableListeners.on(
+      this.nodes.plusButton,
+      "click",
+      () => {
+        this.plusButtonClicked();
+      },
+      false
+    );
 
     /**
      * Add events to show/hide tooltip for plus button
      */
-    const tooltipContent = $.make('div');
+    const tooltipContent = $.make("div");
 
-    tooltipContent.appendChild(document.createTextNode(I18n.ui(I18nInternalNS.ui.toolbar.toolbox, 'Add')));
-    tooltipContent.appendChild($.make('div', this.CSS.plusButtonShortcut, {
-      textContent: '⇥ Tab',
-    }));
+    tooltipContent.appendChild(
+      document.createTextNode(I18n.ui(I18nInternalNS.ui.toolbar.toolbox, "Add"))
+    );
+    tooltipContent.appendChild(
+      $.make("div", this.CSS.plusButtonShortcut, {
+        textContent: "⇥ Tab",
+      })
+    );
 
     this.tooltip.onHover(this.nodes.plusButton, tooltipContent);
 
@@ -307,9 +319,12 @@ export default class Toolbar extends Module<ToolbarNodes> {
      *  - Remove Block Button
      *  - Settings Panel
      */
-    this.nodes.blockActionsButtons = $.make('div', this.CSS.blockActionsButtons);
-    this.nodes.settingsToggler = $.make('span', this.CSS.settingsToggler);
-    const settingsIcon = $.svg('dots', 8, 8);
+    this.nodes.blockActionsButtons = $.make(
+      "div",
+      this.CSS.blockActionsButtons
+    );
+    this.nodes.settingsToggler = $.make("span", this.CSS.settingsToggler);
+    const settingsIcon = $.svg("dots", 8, 8);
 
     $.append(this.nodes.settingsToggler, settingsIcon);
     $.append(this.nodes.blockActionsButtons, this.nodes.settingsToggler);
@@ -317,9 +332,9 @@ export default class Toolbar extends Module<ToolbarNodes> {
 
     this.tooltip.onHover(
       this.nodes.settingsToggler,
-      I18n.ui(I18nInternalNS.ui.blockTunes.toggler, 'Click to tune'),
+      I18n.ui(I18nInternalNS.ui.blockTunes.toggler, "Click to tune"),
       {
-        placement: 'top',
+        placement: "top",
       }
     );
 
@@ -351,16 +366,21 @@ export default class Toolbar extends Module<ToolbarNodes> {
      *
      * mousedown is used because on click selection is lost in Safari and FF
      */
-    this.readOnlyMutableListeners.on(this.nodes.settingsToggler, 'mousedown', (e) => {
-      /**
-       * Stop propagation to prevent block selection clearance
-       *
-       * @see UI.documentClicked
-       */
-      e.stopPropagation();
+    this.readOnlyMutableListeners.on(
+      this.nodes.settingsToggler,
+      "mousedown",
+      (e) => {
+        /**
+         * Stop propagation to prevent block selection clearance
+         *
+         * @see UI.documentClicked
+         */
+        e.stopPropagation();
 
-      this.settingsTogglerClicked();
-    }, true);
+        this.settingsTogglerClicked();
+      },
+      true
+    );
   }
 
   /**

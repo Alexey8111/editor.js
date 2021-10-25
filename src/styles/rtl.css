@@ -1,4 +1,4 @@
-.codex-editor.codex-editor--rtl {
+.megasreda-editor.megasreda-editor--rtl {
   direction: rtl;
 
   .cdx-list {
@@ -6,7 +6,7 @@
     padding-right: 40px;
   }
 
-  .ce-toolbar {
+  .megasreda-editor-toolbar {
     &__plus {
       right: calc(var(--toolbox-buttons-size) * -1);
       left: auto;
@@ -16,7 +16,7 @@
       right: auto;
       left: calc(var(--toolbox-buttons-size) * -1);
 
-      @media (--mobile){
+      @media (--mobile) {
         margin-left: 0;
         margin-right: auto;
         padding-right: 0;
@@ -29,13 +29,13 @@
     left: 5px;
     right: auto;
 
-    &::before{
+    &::before {
       right: auto;
       left: 25px;
     }
 
     &__button {
-      &:not(:nth-child(3n+3)) {
+      &:not(:nth-child(3n + 3)) {
         margin-left: 3px;
         margin-right: 0;
       }
@@ -61,22 +61,19 @@
       }
     }
   }
-
 }
 
-.codex-editor--narrow.codex-editor--rtl {
-  .ce-toolbar__plus {
+.megasreda-editor--narrow.megasreda-editor--rtl {
+  .megasreda-editor-toolbar__plus {
     @media (--not-mobile) {
       left: 0px;
       right: 5px;
     }
   }
 
-  .ce-toolbar__actions {
+  .megasreda-editor-toolbar__actions {
     @media (--not-mobile) {
       left: -5px;
     }
   }
 }
-
-

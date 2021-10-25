@@ -103,7 +103,9 @@ describe("onChange callback", () => {
 
     cy.get("[data-cy=editorjs]").get("div.ce-block").click();
 
-    cy.get("[data-cy=editorjs]").get("div.ce-toolbar__plus").click();
+    cy.get("[data-cy=editorjs]")
+      .get("div.megasreda-editor-toolbar__plus")
+      .click();
 
     cy.get("[data-cy=editorjs]")
       .get("li.megasreda-editor-toolbox__button[data-tool=header]")
@@ -150,7 +152,9 @@ describe("onChange callback", () => {
 
     cy.get("[data-cy=editorjs]").get("div.ce-block").click();
 
-    cy.get("[data-cy=editorjs]").get("span.ce-toolbar__settings-btn").click();
+    cy.get("[data-cy=editorjs]")
+      .get("span.megasreda-editor-toolbar__settings-btn")
+      .click();
 
     cy.get("[data-cy=editorjs]")
       .get("span.cdx-settings-button[data-level=4]")
@@ -183,7 +187,9 @@ describe("onChange callback", () => {
 
     cy.get("[data-cy=editorjs]").get("div.ce-block").click();
 
-    cy.get("[data-cy=editorjs]").get("span.ce-toolbar__settings-btn").click();
+    cy.get("[data-cy=editorjs]")
+      .get("span.megasreda-editor-toolbar__settings-btn")
+      .click();
 
     cy.get("[data-cy=editorjs]")
       .get("div.ce-settings__button--delete")
@@ -209,7 +215,9 @@ describe("onChange callback", () => {
 
     cy.get("[data-cy=editorjs]").get("div.ce-block").last().click();
 
-    cy.get("[data-cy=editorjs]").get("span.ce-toolbar__settings-btn").click();
+    cy.get("[data-cy=editorjs]")
+      .get("span.megasreda-editor-toolbar__settings-btn")
+      .click();
 
     cy.get("[data-cy=editorjs]").get("div.ce-tune-move-up").click();
 

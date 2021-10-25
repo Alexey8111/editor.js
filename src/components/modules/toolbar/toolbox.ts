@@ -49,7 +49,7 @@ export default class Toolbox extends Module<ToolboxNodes> {
       toolboxButton: "megasreda-editor-toolbox__button",
       toolboxButtonActive: "megasreda-editor-toolbox__button--active",
       toolboxOpened: "megasreda-editor-toolbox--opened",
-      openedToolbarHolderModifier: "codex-editor--toolbox-opened",
+      openedToolbarHolderModifier: "megasreda-editor--toolbox-opened",
 
       buttonTooltip: "megasreda-editor-toolbox-button-tooltip",
       buttonShortcut: "megasreda-editor-toolbox-button-tooltip__shortcut",
