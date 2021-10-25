@@ -2,18 +2,16 @@
 /**
  * There will be described test cases of 'blocks.*' API
  */
-describe('api.blocks', () => {
+describe("api.blocks", () => {
   const firstBlock = {
-    id: 'bwnFX5LoX7',
-    type: 'paragraph',
+    id: "bwnFX5LoX7",
+    type: "paragraph",
     data: {
-      text: 'The first block content mock.',
+      text: "The first block content mock.",
     },
   };
   const editorDataMock = {
-    blocks: [
-      firstBlock,
-    ],
+    blocks: [firstBlock],
   };
 
   beforeEach(() => {
@@ -22,19 +20,19 @@ describe('api.blocks', () => {
     } else {
       cy.createEditor({
         data: editorDataMock,
-      }).as('editorInstance');
+      }).as("editorInstance");
     }
   });
 
   /**
    * api.blocks.getById(id)
    */
-  describe('.getById()', () => {
+  describe(".getById()", () => {
     /**
      * Check that api.blocks.getByUd(id) returns the Block for existed id
      */
-    it('should return Block API for existed id', () => {
-      cy.get('@editorInstance').then(async (editor: any) => {
+    it("should return Block API for existed id", () => {
+      cy.get("@editorInstance").then(async (editor: any) => {
         const block = editor.blocks.getById(firstBlock.id);
 
         expect(block).not.to.be.undefined;
@@ -45,9 +43,9 @@ describe('api.blocks', () => {
     /**
      * Check that api.blocks.getByUd(id) returns null for the not-existed id
      */
-    it('should return null for not-existed id', () => {
-      cy.get('@editorInstance').then(async (editor: any) => {
-        expect(editor.blocks.getById('not-existed-id')).to.be.null;
+    it("should return null for not-existed id", () => {
+      cy.get("@editorInstance").then(async (editor: any) => {
+        expect(editor.blocks.getById("not-existed-id")).to.be.null;
       });
     });
   });
@@ -55,23 +53,23 @@ describe('api.blocks', () => {
   /**
    * api.blocks.update(id, newData)
    */
-  describe('.update()', () => {
+  describe(".update()", () => {
     /**
      * Check if block is updated in DOM
      */
-    it('should update block in DOM', () => {
-      cy.get('@editorInstance').then(async (editor: any) => {
+    it("should update block in DOM", () => {
+      cy.get("@editorInstance").then(async (editor: any) => {
         const idToUpdate = firstBlock.id;
         const newBlockData = {
-          text: 'Updated text',
+          text: "Updated text",
         };
 
         editor.blocks.update(idToUpdate, newBlockData);
 
-        cy.get('[data-cy=editorjs]')
-          .get('div.ce-block')
-          .invoke('text')
-          .then(blockText => {
+        cy.get("[data-cy=editorjs]")
+          .get("div.megasreda-editor-block")
+          .invoke("text")
+          .then((blockText) => {
             expect(blockText).to.be.eq(newBlockData.text);
           });
       });
@@ -80,11 +78,11 @@ describe('api.blocks', () => {
     /**
      * Check if block's data is updated after saving
      */
-    it('should update block in saved data', () => {
-      cy.get('@editorInstance').then(async (editor: any) => {
+    it("should update block in saved data", () => {
+      cy.get("@editorInstance").then(async (editor: any) => {
         const idToUpdate = firstBlock.id;
         const newBlockData = {
-          text: 'Updated text',
+          text: "Updated text",
         };
 
         editor.blocks.update(idToUpdate, newBlockData);
@@ -99,19 +97,19 @@ describe('api.blocks', () => {
     /**
      * When incorrect id passed, editor should not update any block
      */
-    it('shouldn\'t update any block if not-existed id passed', () => {
-      cy.get('@editorInstance').then(async (editor: any) => {
-        const idToUpdate = 'wrong-id-123';
+    it("shouldn't update any block if not-existed id passed", () => {
+      cy.get("@editorInstance").then(async (editor: any) => {
+        const idToUpdate = "wrong-id-123";
         const newBlockData = {
-          text: 'Updated text',
+          text: "Updated text",
         };
 
         editor.blocks.update(idToUpdate, newBlockData);
 
-        cy.get('[data-cy=editorjs]')
-          .get('div.ce-block')
-          .invoke('text')
-          .then(blockText => {
+        cy.get("[data-cy=editorjs]")
+          .get("div.megasreda-editor-block")
+          .invoke("text")
+          .then((blockText) => {
             expect(blockText).to.be.eq(firstBlock.data.text);
           });
       });

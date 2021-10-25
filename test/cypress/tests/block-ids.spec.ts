@@ -17,11 +17,11 @@ describe.only("Block ids", () => {
 
   it("Should generate unique block ids for new blocks", () => {
     cy.get("[data-cy=editorjs]")
-      .get("div.ce-block")
+      .get("div.megasreda-editor-block")
       .click()
       .type("First block ")
       .type("{enter}")
-      .get("div.ce-block")
+      .get("div.megasreda-editor-block")
       .last()
       .type("Second block ")
       .type("{enter}");
@@ -35,7 +35,7 @@ describe.only("Block ids", () => {
       .click();
 
     cy.get("[data-cy=editorjs]")
-      .get("div.ce-block")
+      .get("div.megasreda-editor-block")
       .last()
       .click()
       .type("Header");
@@ -72,7 +72,7 @@ describe.only("Block ids", () => {
     });
 
     cy.get("[data-cy=editorjs]")
-      .get("div.ce-block")
+      .get("div.megasreda-editor-block")
       .first()
       .click()
       .type("{movetoend} Some more text");
@@ -109,7 +109,7 @@ describe.only("Block ids", () => {
     });
 
     cy.get("[data-cy=editorjs]")
-      .get("div.ce-block")
+      .get("div.megasreda-editor-block")
       .first()
       .click()
       .type("{enter}")

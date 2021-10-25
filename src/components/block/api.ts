@@ -1,7 +1,7 @@
-import Block from './index';
-import { BlockToolData, ToolConfig } from '../../../types/tools';
-import { SavedData } from '../../../types/data-formats';
-import { BlockAPI as BlockAPIInterface } from '../../../types/api';
+import Block from "./index";
+import { BlockToolData, ToolConfig } from "../../../types/tools";
+import { SavedData } from "../../../types/data-formats";
+import { BlockAPI as BlockAPIInterface } from "../../../types/api";
 
 /**
  * Constructs new BlockAPI object
@@ -10,9 +10,7 @@ import { BlockAPI as BlockAPIInterface } from '../../../types/api';
  *
  * @param {Block} block - Block to expose
  */
-function BlockAPI(
-  block: Block
-): void {
+function BlockAPI(block: Block): void {
   const blockAPI: BlockAPIInterface = {
     /**
      * Block id
@@ -41,7 +39,7 @@ function BlockAPI(
     },
 
     /**
-     * .ce-block element, that wraps plugin contents
+     * .megasreda-editor-block element, that wraps plugin contents
      *
      * @returns {HTMLElement}
      */
@@ -102,7 +100,7 @@ function BlockAPI(
      *
      * @returns {Promise<void|SavedData>}
      */
-    save(): Promise<void|SavedData> {
+    save(): Promise<void | SavedData> {
       return block.save();
     },
 

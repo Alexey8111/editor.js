@@ -40,7 +40,10 @@ describe("onChange callback", () => {
   it("should fire onChange callback with correct index on block insertion above the current (by pressing Enter at the start)", () => {
     createEditor();
 
-    cy.get("[data-cy=editorjs]").get("div.ce-block").click().type("{enter}");
+    cy.get("[data-cy=editorjs]")
+      .get("div.megasreda-editor-block")
+      .click()
+      .type("{enter}");
 
     cy.get("@onChange").should(
       "be.calledWithMatch",
@@ -61,7 +64,7 @@ describe("onChange callback", () => {
     createEditor();
 
     cy.get("[data-cy=editorjs]")
-      .get("div.ce-block")
+      .get("div.megasreda-editor-block")
       .click()
       .type("some text")
       .type("{enter}");
@@ -84,7 +87,10 @@ describe("onChange callback", () => {
   it("should fire onChange callback on typing into block", () => {
     createEditor();
 
-    cy.get("[data-cy=editorjs]").get("div.ce-block").click().type("some text");
+    cy.get("[data-cy=editorjs]")
+      .get("div.megasreda-editor-block")
+      .click()
+      .type("some text");
 
     cy.get("@onChange").should(
       "be.calledWithMatch",
@@ -101,7 +107,7 @@ describe("onChange callback", () => {
   it("should fire onChange callback on block replacement for both of blocks", () => {
     createEditor();
 
-    cy.get("[data-cy=editorjs]").get("div.ce-block").click();
+    cy.get("[data-cy=editorjs]").get("div.megasreda-editor-block").click();
 
     cy.get("[data-cy=editorjs]")
       .get("div.megasreda-editor-toolbar__plus")
@@ -150,7 +156,7 @@ describe("onChange callback", () => {
       },
     ]);
 
-    cy.get("[data-cy=editorjs]").get("div.ce-block").click();
+    cy.get("[data-cy=editorjs]").get("div.megasreda-editor-block").click();
 
     cy.get("[data-cy=editorjs]")
       .get("span.megasreda-editor-toolbar__settings-btn")
@@ -185,7 +191,7 @@ describe("onChange callback", () => {
   it("should fire onChange callback when block is removed", () => {
     createEditor();
 
-    cy.get("[data-cy=editorjs]").get("div.ce-block").click();
+    cy.get("[data-cy=editorjs]").get("div.megasreda-editor-block").click();
 
     cy.get("[data-cy=editorjs]")
       .get("span.megasreda-editor-toolbar__settings-btn")
@@ -211,9 +217,15 @@ describe("onChange callback", () => {
   it("should fire onChange callback when block is moved", () => {
     createEditor();
 
-    cy.get("[data-cy=editorjs]").get("div.ce-block").click().type("{enter}");
+    cy.get("[data-cy=editorjs]")
+      .get("div.megasreda-editor-block")
+      .click()
+      .type("{enter}");
 
-    cy.get("[data-cy=editorjs]").get("div.ce-block").last().click();
+    cy.get("[data-cy=editorjs]")
+      .get("div.megasreda-editor-block")
+      .last()
+      .click();
 
     cy.get("[data-cy=editorjs]")
       .get("span.megasreda-editor-toolbar__settings-btn")
