@@ -5,7 +5,11 @@
   will-change: opacity;
   display: flex;
   flex-direction: column;
-  list-style: none;
+  list-style: none !important;
+  padding: 0.5rem !important;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
 
   @media (--mobile) {
     position: static;
@@ -23,22 +27,22 @@
     @apply --toolbox-button;
     display: flex;
     align-items: center;
-    margin-bottom: 4px;
     svg {
       flex-shrink: 0;
-      margin-right: 0.5rem;
       width: 2.5rem;
     }
-  }
-
-  &__button:last-child {
-    margin-bottom: 0;
   }
 }
 .megasreda-editor-toolbox__button-element {
   width: 100%;
+  margin-bottom: 4px;
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
-
+.megasreda-editor-toolbox__button-title {
+  margin-left: 0.5rem;
+}
 .megasreda-editor-toolbox-button-tooltip {
   &__shortcut {
     opacity: 0.6;
