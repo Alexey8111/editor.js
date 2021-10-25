@@ -39,6 +39,11 @@
       width: 2.5rem;
     }
   }
+  &__button--active {
+    button {
+      background-color: #eee;
+    }
+  }
 }
 .megasreda-editor-toolbox__button-element {
   width: 100%;
