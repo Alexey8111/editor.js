@@ -46,7 +46,9 @@ export default class Toolbox extends Module<ToolboxNodes> {
   public get CSS(): { [name: string]: string } {
     return {
       toolbox: "megasreda-editor-toolbox",
+      buttonElement: "megasreda-editor-toolbox__button-element",
       toolboxButton: "megasreda-editor-toolbox__button",
+      toolboxButtonTitle: "megasreda-editor-toolbox__button-title",
       toolboxButtonActive: "megasreda-editor-toolbox__button--active",
       toolboxOpened: "megasreda-editor-toolbox--opened",
       openedToolbarHolderModifier: "megasreda-editor--toolbox-opened",
@@ -223,11 +225,19 @@ export default class Toolbox extends Module<ToolboxNodes> {
     //   return;
     // }
 
-    const button = $.make("li", [this.CSS.toolboxButton]);
+    const buttonElement = $.make("li", [this.CSS.buttonElement]);
+
+    const button = $.make("button", [this.CSS.toolboxButton]);
+
+    const buttonTitle = $.make("span", [this.CSS.toolboxButtonTitle]);
+
+    buttonElement.appendChild(button);
+
+    buttonTitle.innerHTML = toolToolboxSettings.title
 
     button.dataset.tool = tool.name;
     button.innerHTML = toolToolboxSettings.icon;
-    button.innerHTML = toolToolboxSettings.title;
+    button.appendChild(buttonTitle)
 
     $.append(this.nodes.toolbox, button);
 
