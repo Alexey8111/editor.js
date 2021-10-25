@@ -116,15 +116,9 @@
    * Styles for Settings Button in Toolbar
    */
   --toolbar-button: {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    justify-content: center;
-    width: 34px;
-    height: 34px;
-    line-height: 34px;
     padding: 0 !important;
-    text-align: center;
-    border-radius: 3px;
     cursor: pointer;
     border: 0;
     outline: none;

@@ -4,7 +4,8 @@
   transition: opacity 100ms ease;
   will-change: opacity;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  list-style: none;
 
   @media (--mobile) {
     position: static;
@@ -20,13 +21,22 @@
 
   &__button {
     @apply --toolbox-button;
-    flex-shrink: 0;
-    margin-right: 4px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+    svg {
+      flex-shrink: 0;
+      margin-right: 0.5rem;
+      width: 2.5rem;
+    }
   }
 
   &__button:last-child {
-    margin-right: 0;
+    margin-bottom: 0;
   }
+}
+.megasreda-editor-toolbox__button-element {
+  width: 100%;
 }
 
 .megasreda-editor-toolbox-button-tooltip {
