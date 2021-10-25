@@ -40,6 +40,8 @@
     position: absolute;
     left: calc(var(--toolbox-buttons-size) * -1);
     flex-shrink: 0;
+    background-color: #F2F2F2;
+    border-radius: 5px;
 
     &-shortcut {
       opacity: 0.6;
