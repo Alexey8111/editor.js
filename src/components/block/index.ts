@@ -202,23 +202,23 @@ export default class Block extends EventsDispatcher<BlockEvents> {
    * Is fired when DOM mutation has been happened
    */
   private didMutated = _.debounce((mutations: MutationRecord[] = []): void => {
-    console.log('test mutations', mutations.some, typeof mutations.some);
-    
-    const shouldFireUpdate = !mutations.some(
-      ({ addedNodes = [], removedNodes }) => {
-        return [...Array.from(addedNodes), ...Array.from(removedNodes)].some(
-          (node) =>
-            $.isElement(node) &&
-            (node as HTMLElement).dataset.mutationFree === "true"
-        );
-      }
-    );
+    if (mutations.some) {
+      const shouldFireUpdate = !mutations.some(
+        ({ addedNodes = [], removedNodes }) => {
+          return [...Array.from(addedNodes), ...Array.from(removedNodes)].some(
+            (node) =>
+              $.isElement(node) &&
+              (node as HTMLElement).dataset.mutationFree === "true"
+          );
+        }
+      );
 
-    /**
-     * In case some mutation free elements are added or removed, do not trigger didMutated event
-     */
-    if (!shouldFireUpdate) {
-      return;
+      /**
+       * In case some mutation free elements are added or removed, do not trigger didMutated event
+       */
+      if (!shouldFireUpdate) {
+        return;
+      }
     }
 
     /**
