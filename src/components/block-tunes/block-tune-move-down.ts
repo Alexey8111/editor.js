@@ -5,8 +5,8 @@
  * @copyright <CodeX Team> 2018
  */
 
-import $ from '../dom';
-import { API, BlockTune } from '../../../types';
+import $ from "../dom";
+import { API, BlockTune } from "../../../types";
 
 /**
  *
@@ -30,9 +30,9 @@ export default class MoveDownTune implements BlockTune {
    * @type {{wrapper: string}}
    */
   private CSS = {
-    button: 'ce-settings__button',
-    wrapper: 'ce-tune-move-down',
-    animation: 'wobble',
+    button: "megasreda-editor-settings__button",
+    wrapper: "ce-tune-move-down",
+    animation: "wobble",
   };
 
   /**
@@ -50,12 +50,16 @@ export default class MoveDownTune implements BlockTune {
    * @returns {HTMLElement}
    */
   public render(): HTMLElement {
-    const moveDownButton = $.make('div', [this.CSS.button, this.CSS.wrapper], {});
+    const moveDownButton = $.make(
+      "div",
+      [this.CSS.button, this.CSS.wrapper],
+      {}
+    );
 
-    moveDownButton.appendChild($.svg('arrow-down', 14, 14));
+    moveDownButton.appendChild($.svg("arrow-down", 14, 14));
     this.api.listeners.on(
       moveDownButton,
-      'click',
+      "click",
       (event) => this.handleClick(event as MouseEvent, moveDownButton),
       false
     );
@@ -63,7 +67,7 @@ export default class MoveDownTune implements BlockTune {
     /**
      * Enable tooltip module on button
      */
-    this.api.tooltip.onHover(moveDownButton, this.api.i18n.t('Move down'), {
+    this.api.tooltip.onHover(moveDownButton, this.api.i18n.t("Move down"), {
       hidingDelay: 300,
     });
 
@@ -94,7 +98,9 @@ export default class MoveDownTune implements BlockTune {
     const nextBlockElement = nextBlock.holder;
     const nextBlockCoords = nextBlockElement.getBoundingClientRect();
 
-    let scrollOffset = Math.abs(window.innerHeight - nextBlockElement.offsetHeight);
+    let scrollOffset = Math.abs(
+      window.innerHeight - nextBlockElement.offsetHeight
+    );
 
     /**
      * Next block ends on screen.

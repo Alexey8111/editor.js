@@ -4,8 +4,8 @@
  *
  * @copyright <CodeX Team> 2018
  */
-import { API, BlockTune } from '../../../types';
-import $ from '../dom';
+import { API, BlockTune } from "../../../types";
+import $ from "../dom";
 
 /**
  *
@@ -27,9 +27,9 @@ export default class DeleteTune implements BlockTune {
    * Styles
    */
   private CSS = {
-    button: 'ce-settings__button',
-    buttonDelete: 'ce-settings__button--delete',
-    buttonConfirm: 'ce-settings__button--confirm',
+    button: "megasreda-editor-settings__button",
+    buttonDelete: "megasreda-editor-settings__button--delete",
+    buttonConfirm: "megasreda-editor-settings__button--confirm",
   };
 
   /**
@@ -45,7 +45,7 @@ export default class DeleteTune implements BlockTune {
   /**
    * Tune nodes
    */
-  private nodes: {button: HTMLElement} = {
+  private nodes: { button: HTMLElement } = {
     button: null,
   };
 
@@ -68,14 +68,23 @@ export default class DeleteTune implements BlockTune {
    * @returns {HTMLElement}
    */
   public render(): HTMLElement {
-    this.nodes.button = $.make('div', [this.CSS.button, this.CSS.buttonDelete], {});
-    this.nodes.button.appendChild($.svg('cross', 12, 12));
-    this.api.listeners.on(this.nodes.button, 'click', (event: MouseEvent) => this.handleClick(event), false);
+    this.nodes.button = $.make(
+      "div",
+      [this.CSS.button, this.CSS.buttonDelete],
+      {}
+    );
+    this.nodes.button.appendChild($.svg("cross", 12, 12));
+    this.api.listeners.on(
+      this.nodes.button,
+      "click",
+      (event: MouseEvent) => this.handleClick(event),
+      false
+    );
 
     /**
      * Enable tooltip module
      */
-    this.api.tooltip.onHover(this.nodes.button, this.api.i18n.t('Delete'), {
+    this.api.tooltip.onHover(this.nodes.button, this.api.i18n.t("Delete"), {
       hidingDelay: 300,
     });
 
@@ -100,12 +109,12 @@ export default class DeleteTune implements BlockTune {
        * When toolbar block settings is closed but block deletion is not confirmed,
        * then reset confirmation state
        */
-      this.api.events.on('block-settings-closed', this.resetConfirmation);
+      this.api.events.on("block-settings-closed", this.resetConfirmation);
     } else {
       /**
        * Unsubscribe from block-settings closing event
        */
-      this.api.events.off('block-settings-closed', this.resetConfirmation);
+      this.api.events.off("block-settings-closed", this.resetConfirmation);
 
       this.api.blocks.delete();
       this.api.toolbar.close();

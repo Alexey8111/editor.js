@@ -198,7 +198,7 @@ describe("onChange callback", () => {
       .click();
 
     cy.get("[data-cy=editorjs]")
-      .get("div.ce-settings__button--delete")
+      .get("div.megasreda-editor-settings__button--delete")
       .click()
       .click();
 
