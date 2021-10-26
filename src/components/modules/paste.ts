@@ -783,6 +783,8 @@ export default class Paste extends Module {
 
     const isSubstitutable = tags.includes(element.tagName);
     const isBlockElement = $.blockElements.includes(element.tagName.toLowerCase());
+    console.log('test element.children', element.children);
+    
     const containsAnotherToolTags = Array
       .from(element.children)
       .some(
