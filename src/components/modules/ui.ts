@@ -298,7 +298,7 @@ export default class UI extends Module<UINodes> {
     /**
      * Set customizable bottom zone height
      */
-    this.nodes.redactor.style.minHeight = this.config.minHeight + "px";
+    // this.nodes.redactor.style.minHeight = this.config.minHeight + "px";
 
     this.nodes.wrapper.appendChild(this.nodes.redactor);
     this.nodes.holder.appendChild(this.nodes.wrapper);
