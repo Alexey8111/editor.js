@@ -202,6 +202,8 @@ export default class Toolbox extends Module<ToolboxNodes> {
    * @param {BlockToolConstructable} tool - BlockTool object
    */
   private addTool(tool: BlockTool): void {
+    console.log("test tool", tool);
+
     const toolToolboxSettings = tool.toolbox;
 
     /**
