@@ -37,6 +37,7 @@ export default class Toolbox extends Module<ToolboxNodes> {
     toolbox: null,
     baseToolbox: null,
     widjetToolbox: null,
+    insertToolbox: null,
     buttons: [],
   };
 
@@ -112,9 +113,10 @@ export default class Toolbox extends Module<ToolboxNodes> {
    * Makes the Toolbox
    */
   public make(): void {
-    this.nodes.toolbox = $.make("ul", this.CSS.toolbox);
-    this.nodes.baseToolbox = $.make("ul", this.CSS.toolbox);
-    this.nodes.widjetToolbox = $.make("ul", this.CSS.toolbox);
+    this.nodes.toolbox = $.make("div", this.CSS.toolbox);
+    this.nodes.baseToolbox = $.make("ul", "megasreda-editor-toolbox_base");
+    this.nodes.insertToolbox = $.make("ul", "megasreda-editor-toolbox_insert");
+    this.nodes.widjetToolbox = $.make("ul", "megasreda-editor-toolbox_widjet");
     this.nodes.toolbox = $.make("ul", this.CSS.toolbox);
 
     this.addTools();
@@ -207,8 +209,6 @@ export default class Toolbox extends Module<ToolboxNodes> {
    * @param {BlockToolConstructable} tool - BlockTool object
    */
   private addTool(tool: BlockTool): void {
-    console.log("test tool", tool);
-
     const toolToolboxSettings = tool.toolbox;
 
     /**
@@ -238,6 +238,13 @@ export default class Toolbox extends Module<ToolboxNodes> {
 
     const buttonTitle = $.make("span", [this.CSS.toolboxButtonTitle]);
 
+    const baseTitle = $.make("p");
+    baseTitle.innerHTML = "Базовые блоки";
+    const insertTitle = $.make("p");
+    insertTitle.innerHTML = "Быстрая вставка";
+    const widjetTitle = $.make("p");
+    widjetTitle.innerHTML = "Виджеты";
+
     buttonElement.appendChild(button);
 
     buttonTitle.innerHTML = toolToolboxSettings.title;
@@ -248,13 +255,22 @@ export default class Toolbox extends Module<ToolboxNodes> {
 
     $.append(this.nodes.toolbox, buttonElement);
 
-    if (toolToolboxSettings.type && toolToolboxSettings.type === "Base") {
-      this.nodes.baseToolbox.appendChild(buttonElement);
-    } else {
+    if (toolToolboxSettings.type && toolToolboxSettings.type === "Widjet") {
       this.nodes.widjetToolbox.appendChild(buttonElement);
+    } else if (
+      toolToolboxSettings.type &&
+      toolToolboxSettings.type === "Insert"
+    ) {
+      this.nodes.insertToolbox.appendChild(buttonElement);
+    } else {
+      this.nodes.baseToolbox.appendChild(buttonElement);
     }
 
+    this.nodes.toolbox.appendChild(baseTitle);
     this.nodes.toolbox.appendChild(this.nodes.baseToolbox);
+    this.nodes.toolbox.appendChild(insertTitle);
+    this.nodes.toolbox.appendChild(this.nodes.insertToolbox);
+    this.nodes.toolbox.appendChild(widjetTitle);
     this.nodes.toolbox.appendChild(this.nodes.widjetToolbox);
     this.nodes.buttons.push(buttonElement);
 
