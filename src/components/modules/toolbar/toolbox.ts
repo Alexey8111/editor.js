@@ -254,7 +254,8 @@ export default class Toolbox extends Module<ToolboxNodes> {
       this.nodes.widjetToolbox.appendChild(buttonElement);
     }
 
-    // this.nodes.toolbox.appendChild(buttonElement);
+    this.nodes.toolbox.appendChild(this.nodes.baseToolbox);
+    this.nodes.toolbox.appendChild(this.nodes.widjetToolbox);
     this.nodes.buttons.push(buttonElement);
 
     /**
