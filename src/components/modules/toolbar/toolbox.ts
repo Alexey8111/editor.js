@@ -113,24 +113,34 @@ export default class Toolbox extends Module<ToolboxNodes> {
    * Makes the Toolbox
    */
   public make(): void {
+    const baseBlock = $.make("div", "megasreda-editor-toolbox_base");
     const baseTitle = $.make("p");
     baseTitle.innerHTML = "Базовые блоки";
+
+    const insertBlock = $.make("div", "megasreda-editor-toolbox_insert");
     const insertTitle = $.make("p");
     insertTitle.innerHTML = "Быстрая вставка";
+
+    const widjetBlock = $.make("div", "megasreda-editor-toolbox_widjet");
     const widjetTitle = $.make("p");
-    widjetTitle.innerHTML = "Виджеты";
+    widjetTitle.innerHTML = "Быстрая вставка";
 
     this.nodes.toolbox = $.make("div", this.CSS.toolbox);
-    this.nodes.baseToolbox = $.make("ul", "megasreda-editor-toolbox_base");
-    this.nodes.insertToolbox = $.make("ul", "megasreda-editor-toolbox_insert");
-    this.nodes.widjetToolbox = $.make("ul", "megasreda-editor-toolbox_widjet");
+    this.nodes.baseToolbox = $.make("ul");
+    this.nodes.insertToolbox = $.make("ul");
+    this.nodes.widjetToolbox = $.make("ul");
 
-    this.nodes.toolbox.appendChild(baseTitle);
-    this.nodes.toolbox.appendChild(this.nodes.baseToolbox);
-    this.nodes.toolbox.appendChild(insertTitle);
-    this.nodes.toolbox.appendChild(this.nodes.insertToolbox);
-    this.nodes.toolbox.appendChild(this.nodes.widjetToolbox);
-    this.nodes.toolbox.appendChild(widjetTitle);
+    baseBlock.appendChild(baseTitle);
+    baseBlock.appendChild(this.nodes.baseToolbox);
+    this.nodes.toolbox.appendChild(baseBlock);
+
+    insertBlock.appendChild(insertTitle);
+    insertBlock.appendChild(this.nodes.insertToolbox);
+    this.nodes.toolbox.appendChild(insertBlock);
+
+    widjetBlock.appendChild(widjetTitle);
+    widjetBlock.appendChild(this.nodes.widjetToolbox);
+    this.nodes.toolbox.appendChild(widjetBlock);
 
     this.addTools();
     this.enableFlipper();
