@@ -289,9 +289,18 @@ export default class Toolbox extends Module<ToolboxNodes> {
     if (this.nodes.insertToolbox.children.length > 0) {
       this.nodes.toolbox.appendChild(this.blocks.insertBlock);
     }
-    if (this.nodes.insertToolbox.children.length > 0) {
+    if (this.nodes.widjetToolbox.children.length > 0) {
       this.nodes.toolbox.appendChild(this.blocks.widjetBlock);
     }
+    console.log(
+      "test this.nodes.widjetToolbox.children",
+      this.nodes.widjetToolbox.children
+    );
+    console.log(
+      "test this.nodes.widjetToolbox.children.length",
+      this.nodes.widjetToolbox.children.length
+    );
+
     this.nodes.buttons.push(buttonElement);
 
     /**
