@@ -35,6 +35,8 @@ export default class Toolbox extends Module<ToolboxNodes> {
    */
   public nodes = {
     toolbox: null,
+    baseToolbox: null,
+    widjetToolbox: null,
     buttons: [],
   };
 
@@ -110,6 +112,9 @@ export default class Toolbox extends Module<ToolboxNodes> {
    * Makes the Toolbox
    */
   public make(): void {
+    this.nodes.toolbox = $.make("ul", this.CSS.toolbox);
+    this.nodes.baseToolbox = $.make("ul", this.CSS.toolbox);
+    this.nodes.widjetToolbox = $.make("ul", this.CSS.toolbox);
     this.nodes.toolbox = $.make("ul", this.CSS.toolbox);
 
     this.addTools();
@@ -243,7 +248,13 @@ export default class Toolbox extends Module<ToolboxNodes> {
 
     $.append(this.nodes.toolbox, buttonElement);
 
-    this.nodes.toolbox.appendChild(buttonElement);
+    if (toolToolboxSettings.type && toolToolboxSettings.type === "Base") {
+      this.nodes.baseToolbox.appendChild(buttonElement);
+    } else {
+      this.nodes.widjetToolbox.appendChild(buttonElement);
+    }
+
+    // this.nodes.toolbox.appendChild(buttonElement);
     this.nodes.buttons.push(buttonElement);
 
     /**

@@ -14,6 +14,8 @@ export interface ToolboxConfig {
    * HTML string with an icon for Toolbox
    */
   icon?: string;
+
+  type?: string;
 }
 
 /**
