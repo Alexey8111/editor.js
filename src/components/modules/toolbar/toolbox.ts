@@ -40,6 +40,11 @@ export default class Toolbox extends Module<ToolboxNodes> {
     insertToolbox: null,
     buttons: [],
   };
+  public blocks = {
+    baseBlock: null,
+    insertBlock: null,
+    widjetBlock: null,
+  };
 
   /**
    * CSS styles
@@ -113,34 +118,31 @@ export default class Toolbox extends Module<ToolboxNodes> {
    * Makes the Toolbox
    */
   public make(): void {
-    const baseBlock = $.make("div", "megasreda-editor-toolbox_base");
+    this.blocks.baseBlock = $.make("div", "megasreda-editor-toolbox_base");
     const baseTitle = $.make("p");
     baseTitle.innerHTML = "Базовые блоки";
 
-    const insertBlock = $.make("div", "megasreda-editor-toolbox_insert");
+    this.blocks.insertBlock = $.make("div", "megasreda-editor-toolbox_insert");
     const insertTitle = $.make("p");
     insertTitle.innerHTML = "Быстрая вставка";
 
-    const widjetBlock = $.make("div", "megasreda-editor-toolbox_widjet");
+    this.blocks.widjetBlock = $.make("div", "megasreda-editor-toolbox_widjet");
     const widjetTitle = $.make("p");
-    widjetTitle.innerHTML = "Быстрая вставка";
+    widjetTitle.innerHTML = "Виджеты";
 
     this.nodes.toolbox = $.make("div", this.CSS.toolbox);
     this.nodes.baseToolbox = $.make("ul");
     this.nodes.insertToolbox = $.make("ul");
     this.nodes.widjetToolbox = $.make("ul");
 
-    baseBlock.appendChild(baseTitle);
-    baseBlock.appendChild(this.nodes.baseToolbox);
-    this.nodes.toolbox.appendChild(baseBlock);
+    this.blocks.baseBlock.appendChild(baseTitle);
+    this.blocks.baseBlock.appendChild(this.nodes.baseToolbox);
 
-    insertBlock.appendChild(insertTitle);
-    insertBlock.appendChild(this.nodes.insertToolbox);
-    this.nodes.toolbox.appendChild(insertBlock);
+    this.blocks.insertBlock.appendChild(insertTitle);
+    this.blocks.insertBlock.appendChild(this.nodes.insertToolbox);
 
-    widjetBlock.appendChild(widjetTitle);
-    widjetBlock.appendChild(this.nodes.widjetToolbox);
-    this.nodes.toolbox.appendChild(widjetBlock);
+    this.blocks.widjetBlock.appendChild(widjetTitle);
+    this.blocks.widjetBlock.appendChild(this.nodes.widjetToolbox);
 
     this.addTools();
     this.enableFlipper();
@@ -280,6 +282,15 @@ export default class Toolbox extends Module<ToolboxNodes> {
       this.nodes.insertToolbox.appendChild(buttonElement);
     } else {
       this.nodes.baseToolbox.appendChild(buttonElement);
+    }
+    if (this.nodes.baseToolbox.children.length > 0) {
+      this.nodes.toolbox.appendChild(this.blocks.baseBlock);
+    }
+    if (this.nodes.insertToolbox.children.length > 0) {
+      this.nodes.toolbox.appendChild(this.blocks.insertBlock);
+    }
+    if (this.nodes.insertToolbox.children.length > 0) {
+      this.nodes.toolbox.appendChild(this.blocks.widjetBlock);
     }
     this.nodes.buttons.push(buttonElement);
 
