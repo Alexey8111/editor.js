@@ -51,6 +51,7 @@
 .megasreda-editor-toolbox__button-title {
   font-size: 0.875rem;
   margin-left: 0.5rem;
+  color: #4f4f4f;
 }
 .megasreda-editor-toolbox-button-tooltip {
   &__shortcut {
